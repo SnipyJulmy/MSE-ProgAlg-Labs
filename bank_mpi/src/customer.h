@@ -5,6 +5,6 @@
 #ifndef BANK_MPI_CUSTOMER_H
 #define BANK_MPI_CUSTOMER_H
 
-void customer();
+void customer(int rank);
 
 #endif //BANK_MPI_CUSTOMER_H
