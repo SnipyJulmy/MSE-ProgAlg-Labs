@@ -57,7 +57,7 @@ void customer(int rank) {
             amount = customer_rand_in_range(WITHDRAW_MIN, WITHDRAW_MAX);
             printf("%d - Withdrawal: %d\n", rank, amount);
             // -- Send message
-            MPI_Send(&amount, 1, MPI_INT, BANK_ID, DEPOSIT, MPI_COMM_WORLD);
+            MPI_Send(&amount, 1, MPI_INT, BANK_ID, WITHDRAW, MPI_COMM_WORLD);
         }
 
         // -- Print balance
