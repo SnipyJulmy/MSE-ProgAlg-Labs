@@ -21,12 +21,18 @@
 #define WITHDRAW_MIN 5
 
 
+/**
+ * Returns a random integer between min and max.
+ */
 int customer_rand_in_range(int min, int max) {
     double scaled = (double)rand()/RAND_MAX;
 
-    return (int)(max - min + 1) * scaled + min;
+    return (int)((max - min + 1) * scaled + min);
 }
 
+/**
+ * A customer process, which withdraws and deposits money.
+ */
 void customer(int rank) {
     for(int i = 0; i < NB_ITERATIONS; i++) {
         int r = rand() % 100;
