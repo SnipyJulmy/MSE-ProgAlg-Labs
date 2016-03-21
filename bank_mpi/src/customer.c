@@ -67,5 +67,9 @@ void customer(int rank) {
         printf("%d - Balance: %d\n", rank, balance);
     }
 
+    // -- Leave bank
+    printf("%d - Leaving bank!\n", rank);
+    MPI_Send(NULL, 0, MPI_INT, BANK_ID, QUIT_BANK, MPI_COMM_WORLD);
+
     printf("%d - Finished!\n", rank);
 }
