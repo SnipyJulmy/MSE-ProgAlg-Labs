@@ -8,7 +8,8 @@ include_directories(${MPI_INCLUDE_PATH})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES src/main.c src/bank.c src/bank.h)
+set(SOURCE_FILES src/main.c )
+set(SOURCE_FILES src/main.c src/customer.c src/customer.h src/bank.c src/bank.h)
 add_executable(bank_mpi ${SOURCE_FILES})
 target_link_libraries(bank_mpi ${MPI_LIBRARIES})
 
