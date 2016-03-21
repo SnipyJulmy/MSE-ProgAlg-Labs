@@ -1,7 +1,4 @@
 #include <mpi.h>
-#include "bank.h"
-
-#define BANK_ID 0
 
 void main(int argc, char** argv)
 {
