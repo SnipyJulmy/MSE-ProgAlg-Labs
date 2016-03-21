@@ -9,6 +9,7 @@
 #define START_MONEY 100
 #define DEPOSIT 0xf864
 #define WITHDRAW 0x89f6
+#define BALANCE 0x8c1aff33
 #define QUIT_BANK 0x11114421
 
 void bank(void);

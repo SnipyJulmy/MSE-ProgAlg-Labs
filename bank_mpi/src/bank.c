@@ -30,5 +30,15 @@ void handle_withdraw(MPI_Request request_withdraw)
     int flag = 0;
     MPI_Status status;
     MPI_Test(&request_withdraw, &flag, &status);
+
+    if(flag)
+    {
+        printf("")
+    }
+    else
+    {
+        // failed !
+        printf("No withdraw received");
+    }
 }
 
