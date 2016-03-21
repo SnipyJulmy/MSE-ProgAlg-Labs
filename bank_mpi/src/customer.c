@@ -12,7 +12,8 @@
 
 #include "customer.h"
 
-#define NB_ITERATIONS 10
+#define N_ITERATIONS_MIN 10
+#define N_ITERATIONS_MAX 20
 #define PROB_DEPOSIT 60
 
 #define DEPOSIT_MAX 100
@@ -34,21 +35,27 @@ int customer_rand_in_range(int min, int max) {
  * A customer process, which withdraws and deposits money.
  */
 void customer(int rank) {
-    for(int i = 0; i < NB_ITERATIONS; i++) {
+    printf("%d - Starting\n", rank);
+
+    // -- Decide number of iterations to do
+    int n_iterations = customer_rand_in_range(N_ITERATIONS_MIN, N_ITERATIONS_MAX);
+    printf("%d - Will do %d iterations\n", rank, n_iterations);
+
+    for(int i = 0; i < n_iterations; i++) {
         int r = rand() % 100;
         int amount = 0;
 
         if (r < PROB_DEPOSIT) {
             // -- Deposit money
             amount = customer_rand_in_range(DEPOSIT_MIN, DEPOSIT_MAX);
-            printf("%d - Deposit: %d", rank, amount);
+            printf("%d - Deposit: %d\n", rank, amount);
 
             // -- Send message
             MPI_Send(&amount, 1, MPI_INT, BANK_ID, DEPOSIT, MPI_COMM_WORLD);
         } else {
             // -- Withdraw money
             amount = customer_rand_in_range(WITHDRAW_MIN, WITHDRAW_MAX);
-            printf("%d - Withdrawal: %d", rank, amount);
+            printf("%d - Withdrawal: %d\n", rank, amount);
             // -- Send message
             MPI_Send(&amount, 1, MPI_INT, BANK_ID, DEPOSIT, MPI_COMM_WORLD);
         }
@@ -57,8 +64,8 @@ void customer(int rank) {
         int balance = 0;
         MPI_Status status;
         MPI_Recv(&balance, 1, MPI_INT, BANK_ID, BALANCE, MPI_COMM_WORLD, &status);
-        printf("%d - Balance: %d", rank, balance);
+        printf("%d - Balance: %d\n", rank, balance);
     }
 
-    printf("%d - Finished!", rank);
+    printf("%d - Finished!\n", rank);
 }
